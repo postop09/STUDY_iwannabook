@@ -1,18 +1,18 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import BookList from '../components/BookList'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import BookList from '../components/BookList';
+import Search from '../components/Search';
 import { clearCart } from '../features/cart';
 
 export default function MainPage() {
   const dispatch = useDispatch();
   const cart = useSelector((store) => store.cart);
-  console.log(cart);
+  // console.log(cart);
 
   return (
-    <div>
+    <main>
+      <Search />
       <BookList />
-      <p>{cart.number}</p>
-      <button onClick={() => {dispatch(clearCart())}}>+</button>
-    </div>
+    </main>
   )
 }

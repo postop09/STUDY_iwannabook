@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  arryItems : ['apple', 'banana', 'orange'],
-  number : 4,
-  total : 3,
+  arryItems : [],
+  number : 0,
+  total : 0,
   isLoading : true
 }
 const cartSlice = createSlice({
@@ -15,7 +15,7 @@ const cartSlice = createSlice({
     }
   }
 })
-console.log(cartSlice);
+// console.log(cartSlice);
 export const {clearCart} = cartSlice.actions
 
 export default cartSlice.reducer;
