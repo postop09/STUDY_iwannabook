@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 import Book from './Book';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchFrontEnd } from '../features/frontEnd';
 
 export default function BookList() {
+  const dispatch = useDispatch();
+  const frontEnd = useSelector((store) => store.frontEnd);
+  const pageCount = 1;
+
+  useEffect(() => {
+    dispatch(fetchFrontEnd('프론트엔드', pageCount));
+  }, [pageCount])
+  
+  console.log(frontEnd);
 
   return (
     <section>
