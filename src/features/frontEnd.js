@@ -20,9 +20,7 @@ const initialState = {
 const bookSlice = createSlice({
   name: 'frontEnd',
   initialState,
-  // reducers : {
-    
-  // },
+  reducers : { },
   extraReducers: (builder) => {
     builder.addCase(fetchFrontEnd.fulfilled, (state, action) => {
       state.books.push(action.payload)

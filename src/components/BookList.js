@@ -12,7 +12,6 @@ export default function BookList() {
   useEffect(() => {
     dispatch(fetchFrontEnd('프론트엔드', pageCount));
   }, [pageCount])
-  
   console.log(frontEnd);
 
   return (
