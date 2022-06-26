@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import Book from './Book';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFrontEnd } from '../features/frontEnd';
 
 export default function BookList() {
+  const frontEnd = useSelector((store) => store.frontEnd.books);
   const dispatch = useDispatch();
-  const frontEnd = useSelector((store) => store.frontEnd);
-  const pageCount = 1;
+  let pageCount = 1;
 
   useEffect(() => {
     dispatch(fetchFrontEnd('프론트엔드', pageCount));
-  }, [pageCount])
+  }, [pageCount]);
   console.log(frontEnd);
-
+  
   return (
     <section>
       <WrapBookList>
@@ -26,14 +26,13 @@ export default function BookList() {
         <SecFrontend>
           <H3hide>프론트엔드 도서 목록</H3hide>
           <ListBook>
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
-            <Book />
+            {
+              frontEnd.map((book) => {
+                return (
+                  <Book key={book.isbn} info={book} />
+                )
+              })
+            }
           </ListBook>
         </SecFrontend>
       </WrapBookList>

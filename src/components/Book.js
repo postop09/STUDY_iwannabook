@@ -1,20 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 
-export default function Book() {
+export default function Book({info}) {
+  const date = info.datetime.slice(0,10);
+  // console.log(info);
+
   return (
     <ItmeBook>
       <button>
         <WrapBook>
           <WrapDetail>
-            <h4>제목</h4>
+            <h4>{info.title}</h4>
             <p>
-              설명글 입니다.
+              {info.contents}
             </p>
-            <small>출간일</small>
-            <strong>가격</strong>
+            <small>{date}</small>
+            <strong>{info.price} 원</strong>
           </WrapDetail>
-          <ImgBook src='' alt='' />
+          <ImgBook src={info.thumbnail} alt='' />
         </WrapBook>
       </button>
     </ItmeBook>
@@ -52,12 +56,17 @@ const WrapDetail = styled.div`
   background-color: #000000c4;
   transition: all .3s;
   > h4 {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     font-size: 1.1rem;
     font-weight: 700;
     text-align: left;
   }
   > p {
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
     font-size: 0.9rem;
     text-align: left;
     word-break: keep-all;

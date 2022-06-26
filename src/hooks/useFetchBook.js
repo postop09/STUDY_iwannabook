@@ -11,7 +11,7 @@ export default function useFetchBook(_query, _page) {
       }
     });
     console.log(res.data.documents);
-    setBookList(res);
+    setBookList(res.data.documents);
   }
 
   useEffect(() => {

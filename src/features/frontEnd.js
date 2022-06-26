@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useState } from "react";
 import axios from '../api/axios';
 
 export const fetchFrontEnd = createAsyncThunk('get/frontEnd', 
@@ -9,7 +10,12 @@ export const fetchFrontEnd = createAsyncThunk('get/frontEnd',
       page: _page
     }
   })
-  return res.data;
+
+  if (res.data) {
+    return res.data.documents;
+  } else {
+    return console.error('오류 발생');
+  }
 })
 
 const initialState = {
@@ -23,7 +29,10 @@ const bookSlice = createSlice({
   reducers : { },
   extraReducers: (builder) => {
     builder.addCase(fetchFrontEnd.fulfilled, (state, action) => {
-      state.books.push(action.payload)
+      const bookList = action.payload;
+      [...bookList].map((book) => {
+        state.books.push(book)
+      })
     })
   }
 })

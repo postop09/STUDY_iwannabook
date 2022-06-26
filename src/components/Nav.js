@@ -24,6 +24,7 @@ const SecHeader = styled.header`
   width: 100vw;
   padding: 8px;
   background-color: #fff;
+  z-index: 100;
 `
 const H1hide = styled.h1`
   position: absolute;
