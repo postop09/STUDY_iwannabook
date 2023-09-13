@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useState } from "react";
 import axios from '../api/axios';
 
 export const fetchFrontEnd = createAsyncThunk('get/frontEnd', 
@@ -31,7 +30,7 @@ const bookSlice = createSlice({
     builder.addCase(fetchFrontEnd.fulfilled, (state, action) => {
       const bookList = action.payload;
       [...bookList].map((book) => {
-        state.books.push(book)
+        return state.books.push(book)
       })
     })
   }
